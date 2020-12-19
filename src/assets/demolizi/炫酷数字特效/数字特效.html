@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            min-height: 100%;
+            padding: 20px;
+            cursor: pointer;
+            background: #172f38;
+            color: #d7dbdd;
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+        }
+        .container span{
+            float: left;
+            min-width: 2em;
+            margin-right: 10px;
+        }
+        .center{
+            position: fixed;
+            font-size: 8em;
+            left: 50%;
+            top: 50%;
+            /* transform: translate(-50%,-50%); */
+            transform: translateY(-50%);
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, .7);
+            transition: all 1s ease-in, opacity 0.7s ease-in 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="divContainer" class="container">
+    </div>
+    <div id="divCenter" class="center">
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>

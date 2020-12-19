@@ -21,7 +21,7 @@
                     v-for="(item, index) in lists"
                     :title="item.title"
                     :time="item.time"
-                    :Itemimg="item.article_img"
+                    :Itemimg="imgList[index]"
                     :lable="item.lable"
                     :categroy="item.article_categroy"
                     :content="item.article_brief"
@@ -133,32 +133,12 @@ export default {
   data() {
     return {
       pageShow: true,
-      lists: [{
-        title:'javascript知识点',
-        time:'2020-12-7',
-        article_img:require('../../assets/images1/3.png'),
-        lable:'',
-        article_categroy:"node",
-        article_brief:'JavaScript 编程语言 流程控制Netscape在最初将其脚本语言命名为LiveScript，后来Netscape在与Sun合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”，因此语法上有类似之处，一些名称和命名规范也借自Java。JavaScript与Java名称上的近似，是当时Netscape为了营销考虑与Sun微系统达成协议的结果。Java和JavaScript的关系就像张雨和张雨生的关系，只是名字很像。',
-        visited:6,
-        like_Star:6,
-        id:1,
-        article_id:'1',
-        accessPulish_count:1
-      },
-      {
-        title:'Vue知识点',
-        time:'2020-12-7',
-        article_img:require('../../assets/images1/3.png'),
-        lable:'',
-        article_categroy:"node",
-        article_brief:'一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动.',
-        visited:99,
-        like_Star:66,
-        id:2,
-        article_id:'2',
-        accessPulish_count:2
-      }
+      lists: [
+         
+      ],
+      imgList:[
+        require('../../assets/images1/3.png'),
+        require('../../assets/images1/16.png')
       ],
       count: 1,
       navList: [
@@ -175,7 +155,6 @@ export default {
           title:'javascript深度拷贝'
         },
         ],
-      // MyInfo: {},
       username: "",
       flag: false,
       modal1: false,
@@ -222,13 +201,12 @@ export default {
     }
   },
   mounted() {
-    /* 默认请求第一页 */
-    this.Pagechange(1);
-    // getnotedetail("/note/gettimenoteList").then(res => {
-    //   this.navList = res.data;
-    // });
-    this.getlables();
-    // this.getCategroys();
+    this.Pagechange(1)
+    this.getlables()
+     this.$axios.get('/data.json').then(res=>{
+      this.lists.push(...res.data.data)
+      console.log(this.lists);
+    })
   },
   methods: {
     /* 防抖 */
@@ -237,70 +215,30 @@ export default {
     }, 800),
     /* 获取标签 */
     getlables() {
-      // getnotedetail("/note/getlables").then(res => {
+      //
     },
     /* 获取标签详情 */
     getlableInfo() {
       this.$Spin.show();
+      
     },
     /* 获取分类 */
     /* 获取分类详情页 */
     getCategroyInfo() {
       this.$Spin.show();
+      setTimeout(()=>{
+        this.$Spin.hide()
+      },500)
     },
-    // timeArticle(path) {
-    //   this.$router.push(`/detail/${path}`);
-    // },
-    // changeliked(id) {
-    //   this.lists.forEach(element => {
-    //     if (element.id == id) {
-    //       element.like_Star += 1;
-    //       PostMessage("/note/notelike", {
-    //         likestar: element.like_Star,
-    //         id: id
-    //       }).then(res => {
-    //         if (res.data.err == 0) {
-    //           this.$Message.success(
-    //             "你为这篇文章增加了一个star谢谢你的支持鸭！(●ˇ∀ˇ●)"
-    //           );
-    //         } else {
-    //           this.$Message.error(
-    //             "网络好像有点差劲呢！小主稍后再来咱们不急！(ノへ￣、)"
-    //           );
-    //         }
-    //       });
-    //     }
-    //   });
-    // },
     getInfo() {
       this.username = this.$store.state.uesrnum;
       if (this.username) {
-        // PostMessage("/user/getuserInfo", { token: this.username }).then(res => {
+        // 
       }
     },
     Pagechange() {
       this.$store.commit('LoadingTitleChange', {isshow: true, title: '正在加载文章内容,请稍等...'})
-    },
-    // updateInfo() {
-    //   /* 打开我们的编辑框框 */
-    //   this.flag = !this.flag;
-    // },
-    primaryInfo() {
-      // PostMessage("/user/primaryInfo", {
-
-    },
-    // ok() {
-    //   localStorage.clear();
-    //   // this.myInfo = {};
-    //   setTimeout(() => {
-    //     location.reload();
-    //   }, 1000);
-    //   this.$Message.success("退出成功");
-    // },
-    // cancel() {
-    //   this.$Message.success("不想退出可以多看看噢！(●ˇ∀ˇ●)");
-    //   return;
-    // }
+    }
   }
 };
 </script>

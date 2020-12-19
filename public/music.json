@@ -1,0 +1,21 @@
+{
+    "status": "200",
+    "msg": "OK",
+    "data": [
+      {
+        "musicid":"https://music.163.com/outchain/player?type=2&id=1487528112&auto=1&height=66"
+      },
+      {
+        "musicid":"https://music.163.com/outchain/player?type=2&id=1495058484&auto=1&height=66"
+      },
+      {
+        "musicid":"https://music.163.com/outchain/player?type=2&id=1498342485&auto=1&height=66"
+      },
+      {
+        "musicid":"https://music.163.com/outchain/player?type=2&id=1481164987&auto=1&height=66"
+      },
+      {
+        "musicid":"https://music.163.com/outchain/player?type=2&id=1426649237&auto=1&height=66"
+      }
+    ]
+  }

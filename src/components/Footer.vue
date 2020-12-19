@@ -2,7 +2,7 @@
   <div v-show="$route.path !== '/home'" id="Footer">
     <div class="talk">
       <img class="wx" src="../assets/images/wx.jpg" alt="">
-       <p>&copy; Victory.cn 所有.</p>
+       <p>&copy; Victory.cn .</p>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@
   padding: 2rem 0;
   width: 100vw;
   margin-top: 2rem;
+  z-index: 1;
   .talk {
     margin:0 1rem;
     color: #f2f2f2;

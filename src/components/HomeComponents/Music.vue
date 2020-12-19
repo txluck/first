@@ -1,4 +1,5 @@
 <template>
+                          <!-- 音乐播放器组件 -->
   <div id="music_container">
     <p><Icon type="ios-musical-notes" /> 音乐鉴赏</p>
     <span class="introduce">谁还不是个优雅不失风度的人呢，看电脑累了吧，给你推荐一首好听的音乐，闭一下眼睛听首音乐放松放松吧。</span>
@@ -10,39 +11,52 @@
       class="musicBox"
       :src="music_link"
     ></iframe>
-    <i @click="getMusic(--music_index)" class="prev_Button iconfont icon-icon-arrow-left2"></i>
-    <i @click="getMusic(++music_index)" class="next_Button iconfont icon-icon-arrow-right2"></i>
+    <i @click="getMusic('prev')" class="prev_Button iconfont icon-icon-arrow-left2"></i>
+    <i @click="getMusic('next')" class="next_Button iconfont icon-icon-arrow-right2"></i>
   </div>
 </template>
 <script>
-// import { getnotedetail } from "../NetWork/request";
+
 export default {
   name: "music",
   data() {
     return {
-      music_link: "",
-      music_index: 9
+      music_link: "https://music.163.com/outchain/player?type=2&id=1487528112&auto=1&height=66",
+      music_index: 0,
+      musicList:[]
     };
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   this.getMusic(this.music_index);
-    // });
+   this.$axios.get('/music.json').then(res=>{
+     this.musicList = res.data.data
+    //  console.log(this.musicList[0].musicid);
+   })
+   
   },
 
   methods: {
-    // getMusic(id) {
-    //   getnotedetail(`/music/getmusic/${id}`).then(res => {
-    //     if (res.data.err == 0) {
-    //       this.music_link = `//music.163.com/outchain/player?type=2&id=${res.data.data[0].music_id}&auto=0&height=66`;
-    //       this.music_index = res.data.data[0].id;
-    //     } else {
-    //       this.$Message.error("网络出错了稍后重试吧!");
-    //     }
-    //   });
-    // }
+    getMusic(pn) {
+      console.log(this.music_index);
+        if(pn =='prev'){
+          this.music_index--
+          if(this.music_index < 0){
+            this.music_index = 0
+          }
+          this.music_link = this.musicList[this.music_index].musicid
+        }else{
+            this.music_index++
+          if(this.music_index > this.musicList.length-1){
+            this.music_index = this.musicList.length-1
+          }
+
+          this.music_link = this.musicList[this.music_index].musicid
+        }
+     
+
+      }
+    }
   }
-};
+
 </script>
 <style lang="scss" scoped>
 #music_container {

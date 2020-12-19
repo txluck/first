@@ -9,12 +9,12 @@
         <Icon type="md-laptop" /> <a href="https://weilet.me/">Weilet's blog</a>
         </TabPane>
         <TabPane label="联系方式" name="name2">
-          <i class="iconfont icon-qq" style="color:skyblue;"></i>:755425595 
-          <i class="iconfont icon-weixin" style="color:green;"></i>:x972761675
+          <i class="iconfont icon-qq" style="color:skyblue;"></i>:1666541023 
+          <i class="iconfont icon-weixin" style="color:green;"></i>:1666541023
           <br>
           🙆‍♂️ 有问题欢迎小伙伴来学习讨论~
           <br>
-          博客文章内容主要就是我在开发中遇到的一些常见的问题，记录下来让自己有个印象，应该也可以帮到你们，欢迎你们的光临，多多支持，over~
+          博客文章内容主要就是我在开发中遇到的一些常见的问题，欢迎你们的光临，多多支持，over~
         </TabPane>
       </Tabs>
   </div>

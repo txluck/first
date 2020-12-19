@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { getnotedetail } from '../components/NetWork/request'
+import store from '../store/index'
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,11 +39,6 @@ const routes = [
     component:() => import('../views/Profile.vue')
   },
   {
-    path:'/category',
-    name:'category',
-    component:() => import('../views/category.vue')
-  },
-  {
     path:'/article',
     name:'card',
     component:() => import('../components/HomeComponents/Card.vue')
@@ -56,67 +51,13 @@ const routes = [
   {
     path:'/detail/:id',
     name:'detail',
-    props: route => ({
-     
-      text: route.params.text
-    }),
     component:() => import ('../components/HomeComponents/detail'),
   },
   
-
-  
-  {
-    path:'/admin/login',
-    name:'adminlogin',
-    component:() => import ('../admin/adminLogin.vue')
-  },
-  {
-    path:'/admin/article',
-    name:'admin',
-    component:() => import ('../admin/articleEditor.vue'),
-    children:[
-      {
-        path:'/admin/article/upload/demo',
-        name:'sendDemo',
-        component:() => import('../admin/sendDemo.vue')
-      },
-      {
-        path:'/admin/article/upload/photos',
-        name:'uploadphoto',
-        component:() => import ('../admin/sendcontent.vue')
-      },
-      {
-        path:'/admin/article/upload/images',
-        name:'images',
-        component:() => import ('../admin/ImageUpload.vue')
-      },
-      {
-        path:'/admin/article/upload/articlePublish',
-        name:'articlePublish',
-        component:() => import ('../admin/articlePublish.vue')
-      },
-      {
-        path:'/admin/article/upload/articleManage',
-        name:'articleManage',
-        component:() => import ('../admin/articleManage.vue')
-      },
-      {
-        path:'/admin/article/upload/users',
-        name:'UserManage',
-        component:() => import ('../admin/UserManage.vue')
-      },
-      {
-        path:'/admin/article/upload/articleupdate/:id',
-        name:'articleupdate',
-        component:() => import ('../admin/updateArticle.vue')
-      }
-    ]
-  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes
 })
 
@@ -129,36 +70,11 @@ VueRouter.prototype.push = function push(location) {
 /* 全局导航守卫 */
 router.beforeEach((to,from,next) => {
   if(to.path=="/login") {
-      if(localStorage.getItem('username')) {
+      if(store.state.usernum) {
         router.replace({name:'logined'})
       }
   }
   next()
 })
-/* 管理系统守卫 */
-router.beforeEach((to,from,next) => {
-  if(to.path.includes("/admin/article")) {
-    getnotedetail('/user/adminIslogined').then(res => {
-      if(res.data.err === 0) {
-        next()
-      } else {
-        router.push({ name: 'adminlogin'})
-      }
-    })
-  }
-  next()
-})
-// 以登陆状态
-router.beforeEach((to, from, next) => {
-  if(to.path.includes("/admin/login")) {
-    getnotedetail('/user/adminIslogined').then(res => {
-      if(res.data.err === 0) {
-        router.push({ name:'admin'})
-      } else {
-        router.push({ name: 'adminlogin'})
-      }
-    })
-  }
-  next()
-})
+
 export default router

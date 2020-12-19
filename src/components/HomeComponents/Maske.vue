@@ -40,21 +40,6 @@ export default {
     background-size:800%;
     z-index: -99;
   }
-  // .bg::after {
-  //   content:'';
-  //   width: 100%;
-  //   height: 100%;
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   background:inherit;
-  //   filter: blur(3px);
-  //       opacity: .7;
-  // }
-  // @keyframes opcity {
-  //   0% { transform: translateX(-100%) }
-  //   100% {  transform: translateX(0%) }
-  // }
     @keyframes linears {
       0% { background-position: 0% 50%; }
     50%{ background-position: 100% 50%; }

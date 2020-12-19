@@ -1,7 +1,27 @@
 <template>
   <div id="index" >
            <!-- 切换背景 -->
-    <div v-show="!TypeChange" class="moon"></div>
+    <!-- <div v-show="!TypeChange" class="moon"></div> -->
+   <vue-particles
+        v-show="!TypeChange"
+        class="moon"
+        color="#000"
+        :particleOpacity="0.7"
+        :particlesNumber="130"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#000"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.5"
+        :linesDistance="150"
+        :moveSpeed="2"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+      >
+      </vue-particles>
     <div v-show="TypeChange"  class="night"></div>
 <!-- //点击改变背景的切换操作 -->
     <light @changeBackground="changeBG"/> 
@@ -89,7 +109,12 @@ body,html {
       background: url('../assets/images/night.gif') center;
     }
     .moon {
-      background: url('../assets/images/light.jpg') center;
+      background: url('../assets/images/moon2.jpg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+      z-index: -1;
+      // background-color: #333;
     }
     .router_content {
        animation: animate 2s;

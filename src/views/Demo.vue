@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-// import { PageSizeChange } from "../components/NetWork/request";
+
 import moment from 'moment'
 export default {
   name: "demo",
@@ -26,7 +26,7 @@ export default {
           video_path:require('../assets/images1/Document - Google Chrome.mp4'),
           video_pic:require('../assets/images1/a.png'),
           content:'炫酷数字特效',
-          code_path:'http://127.0.0.1:5500/%E6%95%B0%E5%AD%97%E7%89%B9%E6%95%88.html'
+          code_path:'Many-people-blog-master/src/assets/demolizi/炫酷数字特效/数字特效.html'
         }
         ],
       index: 1
@@ -46,7 +46,7 @@ export default {
     },
                           //打开案例新窗口
     CatCode(path) {
-      window.open(path);
+      window.open(path,'_blank');
     },
     Pagechange() {
       this.getPage();

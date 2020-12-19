@@ -1,5 +1,6 @@
 <template>
  <div class="myInfo">
+                           <!-- 个人信息组件 -->
                         <!-- 判断用户名是否为空  是否登录过 -->
             <div v-if="!username" style="text-align:center;padding-top:8rem;">
               糟糕，您还没有登陆检测不到信息! !!!
@@ -42,10 +43,10 @@
 </template>
 
 <script>
-// import { PostMessage } from '../components/NetWork/request'
+
   export default {
     name:'profile',
-    props:{},
+ 
     data () {
       return {
         username:'',

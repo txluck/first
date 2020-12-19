@@ -94,23 +94,9 @@ import moment from 'moment'
   
     methods: {
         SetReplyInfo() {
-          // item.date = moment(item.date).format('YYYY-MM-DD HH:mm:ss')
-          // this.replyInfo.Info = item
-          // this.replyInfo.index = index
-          // this.replyInfo.Info.article_type = this.$route.params.id
           this.isshow = true
         },
-        // SetPaddingReply(selfitem, parentItem) {
-        //   const item = {}
-        //   item.datetime = moment(selfitem.datetime).format('YYYY-MM-DD HH:mm:ss')
-        //   item.name = selfitem.name // 嵌套回复的名字
-        //   item.username = parentItem.username // 嵌套回复的祖先名字
-        //   item.date = moment(parentItem.date).format('YYYY-MM-DD HH:mm:ss') // 祖先时间
-        //   // this.replyInfo.Info = item
-        //   // this.replyInfo.Info.article_type = this.$route.params.id
-        //   // this.replyInfo.index = index
-        //   this.isshow = true
-        // },
+
        handelInputContent() {
           const token = this.$store.state.username
           if(!token) return this.$Message.error('您还没有登陆呢！')

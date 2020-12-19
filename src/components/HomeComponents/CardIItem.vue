@@ -7,7 +7,7 @@
           </div>
           <p class="title"> <i class="iconfont icon-lianjie"></i>  {{title}}</p>
         </div>
-         <img @click="detailPage(text)" :src="Itemimg" alt="封面">
+         <img @click="detailPage(article_id)" :src="Itemimg" alt="封面">
         <Card :contentid="id" class="card" >
           <!-- xl尺寸显示的三个小球 -->
           <div class="right-around xl-ball">
@@ -16,7 +16,7 @@
           <!-- 文章标题 -->
            <p class="title"><i class="iconfont icon-lianjie"></i>  {{title}}</p>
             <!-- 文章简介 -->
-            <p v-html="content" class="content" @click="detailPage(text)"></p>
+            <p v-html="content" class="content" @click="detailPage(article_id)"></p>
             <!-- 文章发布时间，点赞数，访问量 -->
             <div class="article-item-icon">
               <div class="access_me"><img src="../../assets/images/touxiang.jpg" alt=""><p>大白菜</p></div>
@@ -65,7 +65,7 @@ import moment from "moment";
         type:Number,default:0,required:true
       },
       article_id:{
-        type:String,default:'',required:true
+        type:String,default:"1",required:true
       },
       accessPulish_count:{
         type:Number,default:0,required:true
@@ -76,24 +76,6 @@ import moment from "moment";
       categroy:{
         type:String,default:''
       },
-      text:{
-        type:Object,
-        default:function(){
-          return{
-            title:'javascript知识点',
-            time:'2020-12-7',
-            article_img:require('../../assets/images1/3.png'),
-            lable:'',
-            article_categroy:"node",
-            article_brief:'JavaScript 编程语言 流程控制Netscape在最初将其脚本语言命名为LiveScript，后来Netscape在与Sun合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”，因此语法上有类似之处，一些名称和命名规范也借自Java。JavaScript与Java名称上的近似，是当时Netscape为了营销考虑与Sun微系统达成协议的结果。Java和JavaScript的关系就像张雨和张雨生的关系，只是名字很像。',
-            visited:6,
-            like_Star:6,
-            id:1,
-            article_id:'1',
-            accessPulish_count:1
-        }
-      }
-      }
     },
     data () {
       return {
@@ -110,13 +92,12 @@ import moment from "moment";
   },
     methods: {
       //点击文章跳转到详情页
-      detailPage(text) {
+      detailPage(article_id) {
         
         this.$router.push({
-          // path:`/detail/${article_id}`,
-          name:'detail',
+          path:`/detail/${article_id}`,
           params:{
-            text:text,
+            id: article_id
           }
           })
       },

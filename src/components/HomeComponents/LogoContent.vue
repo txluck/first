@@ -4,7 +4,6 @@
       <i class="meun iconfont icon-caidan"></i>
       <img v-show="$route.name !== 'home'" src="../../assets/images/logo.jpg" alt />
       <p v-show="$route.name !== 'home'">VICTORY</p>
-      <!-- <i @click="$router.push('/category')" class="search iconfont icon-search"></i> -->
     </div>
   </div>
 </template>

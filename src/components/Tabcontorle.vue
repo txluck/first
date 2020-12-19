@@ -1,8 +1,8 @@
 <template>
-                             <!-- 移动端导航页面 -->
+                                       <!-- 移动端导航页面 -->
       <div :class="{show:$store.state.isshow}" class="MeunTab">
               <div class="profile">
-                <img width="100" height="100" src="../assets/images/swiper1.jpeg" alt="">
+                <img width="100" height="100" src="../assets/images/tou.jpg" alt="">
                 <div class="profile">Victory</div>
             </div>
       <List style="padding-left:1.5rem;">
@@ -48,14 +48,10 @@
     },
     methods: {
         skip() {
-          if(localStorage.getItem('username')) {
-              this.$router.push('/logined')
-              return
-            }
             this.$router.push('/login')
         },
         Gogithub() {
-          location.href='https://github.com/Acmenlei'
+          location.href='https://github.com/txluck'
         }
     },
   }
@@ -65,7 +61,7 @@
     .MeunTab {
       width:23rem;
       height: 100vh;
-      background: url('../assets/images/wetherSon.jpg') no-repeat center;
+      background: url('../assets/images/timg-2.jpg') no-repeat center;
       background-size: cover;
       position: fixed;
       left: -35rem;
@@ -80,7 +76,7 @@
         font-size: 1.2rem;
         font-style:normal;
         margin-left: 1rem;
-        color: rgb(255, 0, 106);
+        color: rgb(243, 235, 238);
       }
       @media screen and (min-width:992px) {
         i,span{
@@ -91,7 +87,7 @@
   }
       i:hover{
         cursor: pointer;
-        color: rgb(56, 255, 6);
+        color: rgb(104, 224, 6);
       }
       .profile{
         text-align: center;

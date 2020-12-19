@@ -11,9 +11,11 @@ import './assets/iconfont4/iconfont.css'
 import './assets/iconfont5/iconfont.css'
 import  './components/HomeComponents/clicklove/clicklove'
 import Vuelazyload from 'vue-lazyload'
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 
 Vue.config.productionTip = false
-Vue.prototype.axios = axios
+Vue.prototype.$axios = axios
 
 // 图片懒加载
 Vue.use(Vuelazyload,{

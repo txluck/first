@@ -10,7 +10,7 @@ export default new Vuex.Store({
     Color:'#333',
     LoadingShow: false,
     LoadingTitle:'正在加载请稍后...',
-    baseURL:'http://localhost:3000',
+    baseURL:'http://localhost:8080',
     username:'大白菜',
     usernum:null,
     password:null
@@ -19,7 +19,7 @@ export default new Vuex.Store({
     updateShow(state,data) {
       state.isshow = data
     },
-    updatefont(state, data) {       //操作背景是否变化的函数
+    updatefont(state, data) {       
       state.fontColor = data
       data ? state.Color = '#fff': state.Color = '#333'
     },
@@ -37,3 +37,4 @@ export default new Vuex.Store({
     }
   }
 })
+

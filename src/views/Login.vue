@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-// import { PostMessage } from "../components/NetWork/request";
+
 export default {
   data() {
     return {
@@ -110,31 +110,7 @@ export default {
     }
   },
   mounted() {
-    // if (localStorage.getItem("dlsjalkjdkljaslfjldjgltlfgdoeiroeiotgjfkdjk")) {
-    //   this.showBtn = true;
-    //   this.count = parseInt(
-    //     localStorage.getItem("dlsjalkjdkljaslfjldjgltlfgdoeiroeiotgjfkdjk")
-    //   );
-    //   this.timer = setInterval(() => {
-    //     this.count -= 1;
-    //     if (this.count == 0) {
-    //       clearInterval(this.timer);
-    //       localStorage.removeItem(
-    //         "dlsjalkjdkljaslfjldjgltlfgdoeiroeiotgjfkdjk"
-    //       );
-    //       this.btntext = "发送验证码";
-    //       this.showBtn = false;
-    //     } else {
-    //       this.btntext = `${this.count}秒后重新发送`;
-    //       localStorage.setItem(
-    //         "dlsjalkjdkljaslfjldjgltlfgdoeiroeiotgjfkdjk",
-    //         this.count
-    //       );
-    //     }
-    //   }, 1000);
-    // } else {
-    //   clearInterval(this.timer);
-    // }
+  
     /* 键盘事件 */
     document.onkeydown = e => {
       var key = e["keyCode"];
@@ -149,7 +125,7 @@ export default {
         if (valid) {
           /* 登陆失败走注册模式 */
           if (this.isshow) {
-            // this.$store.commit("LoadingTitleChange", {
+            // 
           } else {
             /* 默认走登陆模式 */
             this.$store.commit("LoadingTitleChange", {
@@ -211,6 +187,11 @@ export default {
   }
   .logintitle {
     font-size: 2rem;
+    // color: #fff ! important;
+  }
+  p{
+    // color: #fff ! important;
   }
 }
+
 </style>

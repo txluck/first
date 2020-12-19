@@ -22,10 +22,7 @@
       };
     },
     mounted(){
-      // if(localStorage.getItem('username')) {
-      //   this.$refs.navigators[this.$refs.navigators.length-1].innerHTML
-      //    = this.$refs.navigators[this.$refs.navigators.length-1].innerHTML.replace('登陆 / 注册', '已登录')
-      // }
+     
     },
     methods: {
         triggerPage(path) {

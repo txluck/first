@@ -4,73 +4,73 @@
       <Icon type="md-ribbon"></Icon>当前位置: <router-link style="cursor:pointer" tag="span" to="/">首页</router-link> > 云相册
       </header>
         <div id="container">
-          <div class="card" v-for="(item, index) in talkdata" :key="index">
+          <div class="card" v-for="(item, index) in imgdata" :key="index">
             <img :src="item.imgsrc">  
             <p>{{item.content}}</p>
-            <p>{{item.datetime}}</p>
+            <p>{{item.datatime}}</p>
           </div>
       </div>
   </div>
 </template>
 <script>
-// import  { ajaxs } from '../components/NetWork/request'
+
   export default {
     name:'about',
     data() {
       return {
-        talkdata:[
-          {imgsrc:require('../assets/images1/0.png'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/1.png'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/2.png'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/3.png'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/4.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/5.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/6.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/7.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/8.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/9.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/10.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/11.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
-           {imgsrc:require('../assets/images1/12.jpg'),
-           content:'aaaaaaaaaaa',
-           datatime:'2020.12.3'
-           },
+        imgdata:[
+          // {imgsrc:require('../assets/images1/0.png'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/1.png'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/2.png'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/3.png'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/4.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/5.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/6.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/7.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/8.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/9.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/10.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/11.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
+          //  {imgsrc:require('../assets/images1/12.jpg'),
+          //  content:'aaaaaaaaaaa',
+          //  datatime:'2020.12.3'
+          //  },
            ],
         flag:false,
         page:1
@@ -82,48 +82,47 @@
       }
     },
     methods:{
-          // getData(){
-          //   console.log('a');
-          //   if (this.flag) {
-          //       return false;
-          //   }
-          //   this.flag = true;
-          //   // http://127.0.0.1:3000/data
-          //   ajaxs('GET', 'http://localhost:8080/assets/data.json', function(res) {
-          //   // ajax('GET', 'http://127.0.0.1:3000/data', function(res) {
-          //       var data = JSON.parse(res);
-          //       console.log(data);
-          //       this.flag = false;
-          //   }, 'page=' + this.page, true)
-          // }
+       getData(){
+                                                      //  请求图片的信息
+         this.$axios.get('/img.json').then(res=>{
+           if(res.data.status == '200'){
+                // this.imgdata = res.data.data
+                // console.log(this.imgdata);
+                // this.imgdata.forEach(item=>{
+                //   item.imgsrc = require(item.imgsrc)
+                // })
+                // console.log(this.imgdata);
+                for(let i in res.data.data){
+                  this.imgdata.push({
+                    imgsrc:require('../assets/images1/'+ res.data.data[i].imgsrc),
+                    content:res.data.data.content,
+                    time: res.data.data.time
+                  })
+                }
+           }
+         })
+       }
+        
     },
     mounted() {
-      // this.getData()
-      // getnotedetail('/upload/gettalk')
-      // .then(res => {
-      //   if(res.data.err === 0) {
-      //       this.talkdata = res.data.data;
-      //   } else {
-      //     this.$Message.error(res.data.data);
-      //   }
-      // })
-      // this.axios.get('../../src/static/mock/data.json').then(res=>{
-      //   console.log(res);
-      // })
-      // console.log('a');
-       
-            // if (this.flag) {
-            //     return false;
-            // }
-            // this.flag = true;
-            // // http://127.0.0.1:3000/data
-            // ajax('GET', './data.json', function(res) {
-            // // ajax('GET', 'http://127.0.0.1:3000/data', function(res) {
-            //     var data = JSON.parse(res);
-            //     console.log(data);
-            //     flag = false;
-            // }, false, true)
-        
+        this.getData()
+            let timer = null;
+            let that = this;
+            let i=5
+    window.onscroll = function () {       
+        clearTimeout(timer);
+        let clientHeight = document.documentElement.clientHeight;
+        let scrollTop = document.documentElement.scrollTop;
+        console.log(that.imgdata);
+        var minHeight = 450*Math.ceil(that.imgdata.length/i);
+              i++
+        console.log(scrollTop, clientHeight)
+        if (minHeight < clientHeight + scrollTop) {
+            timer = setTimeout(function () {
+                that.getData();
+            }, 500)
+        }
+      }
     },
   }
 </script>
@@ -145,6 +144,7 @@
       border: 1px solid #ccc;
       break-inside:avoid;
       padding: 0.6rem;
+      margin-bottom: 1rem;
     img {
       max-width: 100%;
     }

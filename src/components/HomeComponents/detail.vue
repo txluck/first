@@ -9,7 +9,7 @@
       <!-- 时间 -->
       <h3 style="padding-top:1rem;">
         <Icon type="ios-timer" />
-        {{time | dateFilter}}
+        {{time.time | dateFilter}}
       </h3>
       <!-- 标签 -->
       <div class="tags">
@@ -50,25 +50,23 @@
   </div>
 </template>
 <script>
-// import { getnotedetail,  } from "../NetWork/request";
-// import highlight from "highlight.js";
-// import marked from "marked";
+
 import "highlight.js/styles/monokai-sublime.css";
-// import QrcodeVue from "qrcode.vue";
 import replyOrpublish from "../ReplyOrPublish/replyOrpublish";
 import moment from "moment";
 export default {
   name: "detail",
   data() {
     return {
-      html: "JavaScript 编程语言 流程控制Netscape在最初将其脚本语言命名为LiveScript，后来Netscape在与Sun合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”，因此语法上有类似之处，一些名称和命名规范也借自Java。JavaScript与Java名称上的近似，是当时Netscape为了营销考虑与Sun微系统达成协议的结果。Java和JavaScript的关系就像张雨和张雨生的关系，只是名字很像。",
+      html: "",
       share_brief: "",
       share_img: "",
       value: "",
+      data:[],
       arrMesasgeList: [],
-      title: "javascript",
-      time: "2020-12-8",
-      bgColor: ["magenta", "blue", "red", "cyan", "volcano", "yellow"],
+      title: "",
+      time: {},
+      bgColor: [ "cyan", "volcano", "yellow"],
       shareIcon: [
         {
           content: "分享到微博",
@@ -90,24 +88,19 @@ export default {
       ballColor:['orangered', 'yellow', 'lightgreen']
     };
   },
+  components: { replyOrpublish },  
   filters: {
-    dateFilter(val) {
-      return moment(val).format("YYYY-MM-DD");
+    dateFilter(V) {
+      return moment(V).format("YYYY-MM-DD");
     }
   },
-  components: { replyOrpublish },
   mounted() {
-    console.log('detail',this.$route.params);
-    // this.lightEdite();
-    // this.$Spin.show();
-    // getnotedetail(`/note/bynotetext/${this.$route.params.id}`).then(res => {
-    //   const baseURL = res.data.message;
-    //   this.html = marked(baseURL.content[0].content);
-    //   this.share_brief = baseURL.content[0].article_brief;
-    //   this.share_img = baseURL.content[0].article_img;
-    //   this.title = baseURL.content[0].title;
-    //   this.time = baseURL.content[0].time;
-    //   this.arrMesasgeList = baseURL.data;
+    this.$axios.get('/data.json').then(res=>{
+        this.data = res.data.data
+        this.judge_article()
+    })
+    
+ 
     //   this.$Spin.hide();
     // });
   },
@@ -124,31 +117,18 @@ export default {
     }
   },
   methods: {
-    rander(){
-      const  text  = JSON.parse(this.text)
-      console.log(text);
-      
+    judge_article(){
+       const article_id = this.$route.params.id
+      //  console.log(typeof(this.$route.params.id));
+      //  console.log(typeof(this.data[0].article_id));
+       this.data.forEach(item=>{
+         if(item.article_id == article_id){
+           this.html=item.article_brief
+           this.title = item.title
+         }
+       })
+
     },
-    // lightEdite() {
-    //   highlight.initHighlightingOnLoad();
-    //   var rendererMD = new marked.Renderer();
-    //   marked.setOptions({
-    //     renderer: rendererMD,
-    //     gfm: true,
-    //     tables: true,
-    //     breaks: false,
-    //     pedantic: false,
-    //     sanitize: false,
-    //     smartLists: true,
-    //     smartypants: false
-    //   });
-    //   /* 初始化marked颜色高亮 */
-    //   marked.setOptions({
-    //     highlight: function(code) {
-    //       return highlight.highlightAuto(code).value;
-    //     }
-    //   });
-    // },
     ArticleShare(i) {
       let link;
       switch (i) {
@@ -174,22 +154,6 @@ export default {
       if (username) {
         if (this.value !== "") {
           // const article_id = this.$route.params.id;
-          // let that = this;
-          // const obj = {
-          //   token: username,
-          //   article_id: article_id,
-          //   access_content: that.value
-          // };
-          // PostMessage("/note/accessPulish", obj).then(res => {
-          //   if (res.data.err == 0) {
-          //     this.$Message.success("发表成功!");
-          //     setTimeout(() => {
-          //       location.reload();
-          //     }, 1000);
-          //   } else {
-          //     this.$Message.error(res.data.message);
-          //   }
-          // });
         } else {
           this.$Message.error("不能为空");
         }
@@ -261,6 +225,8 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
+    // z-index: 2;
       .ball {
         margin-top: 1rem;
         span {
